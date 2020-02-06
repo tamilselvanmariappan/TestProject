@@ -12,6 +12,7 @@ namespace Data.Test
     {
         public DataContext() : base("name=TestDBConnectionString")
         {
+            this.Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer<DataContext>(new CreateDatabaseIfNotExists<DataContext>());
         }
 

@@ -36,12 +36,36 @@ namespace Data.Test
 
         public Asset GetAssetById(string id)
         {
-            return _context.Assets.Where(x => x.AssetId == id).FirstOrDefault();
+            return _context.Assets.Include(x => x.Country).Include(x => x.MimeType).Where(x => x.AssetId == id).FirstOrDefault();
         }
 
         public Asset SaveAsset(Asset asset)
         {
             asset.AssetId = Guid.NewGuid().ToString();
+            asset.CreatedOn = DateTime.UtcNow;
+
+            Country country = _context.Countries.Where(x => x.CountryName == asset.Country.CountryName).FirstOrDefault();
+            if (country == null)
+            {
+                country = new Country
+                {
+                    CountryName = asset.Country.CountryName
+                };
+                _context.Countries.Add(country);
+            }
+            asset.Country = country;
+
+            MimeType mtype = _context.MimeTypes.Where(x => x.Type == asset.MimeType.Type).FirstOrDefault();
+            if (mtype == null)
+            {
+                mtype = new MimeType
+                {
+                    Type = asset.MimeType.Type
+                };
+                _context.MimeTypes.Add(mtype);
+            }
+            asset.MimeType = mtype;
+
             _context.Assets.Add(asset);
             _context.SaveChanges();
             return asset;
@@ -63,6 +87,17 @@ namespace Data.Test
                 _context.SaveChanges();
             }
             return asset;
+        }
+
+        public async Task<List<Country>> GetCountryList()
+        {
+            var countryList = await _context.Countries.ToListAsync();
+            return countryList;
+        }
+
+        public async Task<List<MimeType>> MimeTypeList()
+        {
+            return await _context.MimeTypes.ToListAsync();
         }
 
         public void SaveAssetDataFromCSV(List<Asset> assets)

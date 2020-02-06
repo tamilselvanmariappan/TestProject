@@ -1,0 +1,11 @@
+a {
+  &.badge {
+    color: #fff;
+    cursor: pointer;
+  }
+}
+.head-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,37 @@
+<h4>Asset Details</h4>
+<table class="table table-striped" *ngIf="assetData">
+  <tbody>
+    <tr>
+      <td>FileName</td>
+      <td>{{assetData.FileName}}</td>
+    </tr>
+    <tr>
+      <td>CreatedBy</td>
+      <td>{{assetData.CreatedBy}}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{assetData.Email}}</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>{{assetData.Description}}</td>
+    </tr>
+    <tr>
+      <td>Created On</td>
+      <td>{{assetData.CreatedOn | date:'fullDate'}}</td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td>{{assetData.country?.CountryName}}</td>
+    </tr>
+    <tr>
+      <td>MimeType</td>
+      <td>{{assetData.MimeType?.Type}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a class="btn-primary btn" routerLink="/asset/edit/{{assetData.AssetId}}">Edit</a></td>
+    </tr>
+  </tbody>
+</table>

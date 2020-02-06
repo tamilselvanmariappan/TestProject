@@ -1,0 +1,38 @@
+<form name="edit" (submit)="handleFormSubmit()" ngNativeValidate>
+  <h4>Asset Edit</h4>
+  <table class="table table-striped" *ngIf="assetData">
+    <tbody>
+      <tr>
+        <td>FileName</td>
+        <td><input type="text" name="FileName" class="input form-control" [(ngModel)]="assetData.FileName" required />
+        </td>
+      </tr>
+      <tr>
+        <td>CreatedBy</td>
+        <td><input type="text" name="CreatedBy" class="input form-control" [(ngModel)]="assetData.CreatedBy" required />
+        </td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="email" name="Email" class="input form-control" [(ngModel)]="assetData.Email" required /></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><textarea class="input form-control" name="Description" [(ngModel)]="assetData.Description"></textarea></td>
+      </tr>
+      <tr>
+        <td>CreatedOn</td>
+        <td>{{assetData.CreatedOn | date:'fullDate'}}</td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td>{{assetData.country?.CountryName}}</td>
+      </tr>
+      <tr>
+        <td>MimeType</td>
+        <td>{{assetData.MimeType?.Type}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-success" type="submit">Update Changes</button>
+</form>

@@ -1,0 +1,53 @@
+<form name="create" (submit)="handleFormSubmit()" ngNativeValidate>
+  <h4>Asset Create</h4>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>FileName</td>
+        <td><input type="text" name="FileName" class="input form-control" [(ngModel)]="assetData.FileName" required />
+        </td>
+      </tr>
+      <tr>
+        <td>CreatedBy</td>
+        <td><input type="text" name="CreatedBy" class="input form-control" [(ngModel)]="assetData.CreatedBy" required />
+        </td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="email" name="Email" class="input form-control" [(ngModel)]="assetData.Email" required /></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><textarea class="input form-control" name="Description" [(ngModel)]="assetData.Description"></textarea></td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td>
+          <select class="form-control" name="Country" [(ngModel)]="countryData" required>
+            <option value="United States" selected>United States</option>
+            <option value="Canada">Canada</option>
+            <option value="Japan">Japan</option>
+            <option value="Serbia">Serbia</option>
+            <option value="Romania">Romania</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Spain">Spain</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>MimeType</td>
+        <td>
+          <select class="form-control" name="MimeType" [(ngModel)]="mimeTypeData" required>
+            <option value="video/mpeg" selected>video/mpeg</option>
+            <option value="text/webviewhtml">text/webviewhtml</option>
+            <option value="application/mspowerpoint">application/mspowerpoint</option>
+            <option value="text/html">text/html</option>
+            <option value="text/x-script.ksh">text/x-script.ksh</option>
+            <option value="application/vnd.hp-hpgl">application/vnd.hp-hpgl</option>
+            <option value="application/x-x509-ca-cert">application/x-x509-ca-cert</option>
+          </select></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-success" type="submit">Save Asset</button>
+</form>

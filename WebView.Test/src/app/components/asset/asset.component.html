@@ -1,0 +1,32 @@
+<section class="head-wrap">
+    <h4>Asset List</h4><a class="create-new btn-primary btn" routerLink="/asset/create">Create New</a>
+</section>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="assetsData && assetsData.length">
+        <tr *ngFor="let asset of assetsData; index as i">
+            <th scope="row">{{getPageNumber(i)}}</th>
+            <td> {{asset.FileName}}</td>
+            <td>{{asset.CreatedBy}}</td>
+            <td>{{asset.CreatedOn | date:'fullDate' }}</td>
+            <td><a class="badge badge-success" routerLink="/asset/detail/{{asset.AssetId}}">View</a>&nbsp;
+                <a class="badge badge-primary" routerLink="/asset/edit/{{asset.AssetId}}">Edit</a>&nbsp;
+                <a class="badge badge-danger" (click)="handleDeleteAsset(asset.AssetId)">Delete</a></td>
+        </tr>
+    </tbody>
+    <tr *ngIf="!assetsData || !assetsData.length">
+        <td colspan="5"> Data Loading... </td>
+    </tr>
+</table>
+<section>
+    <ngb-pagination [page]="currentPage" [pageSize]="1" [maxSize]="15" [collectionSize]="totalPages"
+        (pageChange)="pageChanged($event)"></ngb-pagination>
+</section>
